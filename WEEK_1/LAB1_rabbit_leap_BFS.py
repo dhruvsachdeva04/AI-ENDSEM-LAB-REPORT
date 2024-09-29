@@ -10,19 +10,19 @@ def generate_moves(state):
     possible_moves = []
     space_index = state.index(' ') 
     
-    # Swap 
+    
     def move_and_record(i, j):
         new_state = state[:]
         new_state[i], new_state[j] = new_state[j], new_state[i]
         possible_moves.append(new_state)
     
-    # Checking left moves
+   
     if space_index - 1 >= 0 and state[space_index - 1] == 'E':
         move_and_record(space_index, space_index - 1)
     if space_index - 2 >= 0 and state[space_index - 2] == 'E':
         move_and_record(space_index, space_index - 2)
     
-    # Checking right moves
+    
     if space_index + 1 < len(state) and state[space_index + 1] == 'W':
         move_and_record(space_index, space_index + 1)
     if space_index + 2 < len(state) and state[space_index + 2] == 'W':
@@ -32,7 +32,7 @@ def generate_moves(state):
 
 def bfs_solver(start):
     """Performs BFS to find the path from start to the goal state."""
-    to_visit = deque([(start, [])])  # Queue for BFS: holds (state, path) tuples
+    to_visit = deque([(start, [])])  
     explored = set()
     
     while to_visit:
@@ -43,20 +43,19 @@ def bfs_solver(start):
             continue
         
         explored.add(state_tuple)
-        path_so_far = path_so_far + [state]  # Add current state to the path
+        path_so_far = path_so_far + [state]  
         
         if goal_reached(state):
-            return path_so_far  # Return the successful path
+            return path_so_far  
         
         for next_state in generate_moves(state):
             to_visit.append((next_state, path_so_far))
     
-    return None  # No solution
+    return None  
 
-# Start config
+
 initial_state = ['E', 'E', 'E', ' ', 'W', 'W', 'W']
 
-# Executing the BFS algorithm 
 result = bfs_solver(initial_state)
 
 if result:

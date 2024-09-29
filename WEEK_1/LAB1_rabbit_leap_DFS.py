@@ -13,23 +13,23 @@ def generate_moves(config):
         new_config[pos1], new_config[pos2] = new_config[pos2], new_config[pos1]
         possible_moves.append(new_config)
 
-    # Movement options for 'E' and 'W' rabbits
+    
     if empty_spot > 0 and config[empty_spot - 1] == 'E':
-        swap_positions(empty_spot, empty_spot - 1)  # Single step forward
+        swap_positions(empty_spot, empty_spot - 1) 
     if empty_spot > 1 and config[empty_spot - 2] == 'E':
-        swap_positions(empty_spot, empty_spot - 2)  # Jump over one rabbit
+        swap_positions(empty_spot, empty_spot - 2)  
 
     if empty_spot < 6 and config[empty_spot + 1] == 'W':
-        swap_positions(empty_spot, empty_spot + 1)  # Single step forward
+        swap_positions(empty_spot, empty_spot + 1)  
     if empty_spot < 5 and config[empty_spot + 2] == 'W':
-        swap_positions(empty_spot, empty_spot + 2)  # Jump over one rabbit
+        swap_positions(empty_spot, empty_spot + 2)  
 
     return possible_moves
 
 def depth_first_search(initial_state):
     """Perform DFS to solve the Rabbit Leap problem."""
-    frontier = [(initial_state, [])]  # Stack to track states
-    explored = set()  # Set to track visited states
+    frontier = [(initial_state, [])]  
+    explored = set() 
 
     while frontier:
         state, steps = frontier.pop()
@@ -48,10 +48,10 @@ def depth_first_search(initial_state):
 
     return None
 
-# Define initial state
+
 initial_state = ['E', 'E', 'E', ' ', 'W', 'W', 'W']
 
-# Execute DFS and find solution
+
 result = depth_first_search(initial_state)
 
 if result:
